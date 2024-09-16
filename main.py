@@ -11,6 +11,8 @@ def main():
 
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+	game_clock = pygame.time.Clock()
+
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
