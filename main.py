@@ -1,16 +1,17 @@
 import pygame
 from asteroidfield import AsteroidField
-from constants import *
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from player import Player
 
-def with_groups(o, *groups):
+
+def with_groups(o: pygame.sprite.Sprite, *groups: pygame.sprite.Group):
     for group in groups:
         group.add(o)
 
     return o
 
 
-def main():
+def main() -> None:
     print("Starting asteroids!")
     print("Screen width:", SCREEN_WIDTH)
     print("Screen height:", SCREEN_HEIGHT)
@@ -21,14 +22,19 @@ def main():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
-    
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    player = with_groups(Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), updatable, drawable)
-    player.default_shot_groups = [shots, updatable, drawable]
+    Player.default_shot_groups = [shots, updatable, drawable]
+    player = with_groups(
+        Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), updatable, drawable
+    )
 
+    AsteroidField.default_asteroid_groups = [asteroids, updatable, drawable]
     asteroid_field = with_groups(AsteroidField(), updatable)
-    asteroid_field.default_asteroid_groups = [asteroids, updatable, drawable]
+
+    print(f"{player=}")
+    print(f"{asteroid_field=}")
 
     dt = 0
     game_clock = pygame.time.Clock()
@@ -38,7 +44,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill('black')
+        screen.fill("black")
 
         for obj in updatable:
             obj.update(dt)
@@ -75,4 +81,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
