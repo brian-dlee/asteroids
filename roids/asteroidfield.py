@@ -1,10 +1,9 @@
 import random
 
 import pygame
-from pygame.math import Vector2
 
-from asteroid import Asteroid
-from constants import (
+from roids.asteroid import Asteroid
+from roids.constants import (
     ASTEROID_KINDS,
     ASTEROID_MAX_RADIUS,
     ASTEROID_MIN_RADIUS,
@@ -46,7 +45,12 @@ class AsteroidField(pygame.sprite.Sprite):
         self.spawn_timer = 0.0
         self.default_asteroid_groups = []
 
-    def spawn(self, radius: float, position: Vector2, velocity: Vector2) -> None:
+    def spawn(
+        self,
+        radius: float,
+        position: pygame.math.Vector2,
+        velocity: pygame.math.Vector2,
+    ) -> None:
         asteroid = Asteroid(position.x, position.y, radius)
         asteroid.velocity = velocity
 

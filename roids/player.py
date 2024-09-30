@@ -1,14 +1,14 @@
 import pygame
 
-from circleshape import CircleShape
-from constants import (
+from roids.circleshape import CircleShape
+from roids.constants import (
     PLAYER_RADIUS,
     PLAYER_SHOOT_SPEED,
     PLAYER_SHOT_COOLDOWN,
     PLAYER_SPEED,
     PLAYER_TURN_SPEED,
 )
-from shot import Shot
+from roids.shot import Shot
 
 
 class Player(CircleShape):
