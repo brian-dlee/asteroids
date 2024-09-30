@@ -57,7 +57,10 @@ def main():
                     break
 
         for asteroid in asteroids_shot:
-            asteroid.kill()
+            for child in asteroid.split():
+                asteroids.add(child)
+                updatable.add(child)
+                drawable.add(child)
 
         for bullet in shots_hit:
             bullet.kill()
